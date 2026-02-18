@@ -66,9 +66,6 @@ def generate_sawtooth(x_max, y_min, y_max, phi, height, width, function_type, al
 
     image_matrix = np.tile(values.astype(np.uint8), (sidelength, 1))
 
-    plt.plot(image_matrix[0][0:500])
-    plt.show()
-
     if phi == 0 or phi == 180:
         img = crop_center(Image.fromarray(image_matrix), width, height)
     else:
