@@ -2,17 +2,19 @@ import numpy as np
 from PIL import Image, ImageTk
 import tkinter as tk
 import screeninfo
+import matplotlib.pyplot as plt
 
+monitor = 1
 
-x_max = 17
+x_max = 100
 y_min = 0
 y_max = 255
-phi = 45
+phi = 0
 height, width = (1080, 1920)
 
 # 0: exponential, 1: power, 2: log, else: linear
 function_type = 0
-alpha = 2
+alpha = -5
 
 class App(tk.Tk):
     def __init__(self, monitor: int):
@@ -63,6 +65,10 @@ def generate_sawtooth(x_max, y_min, y_max, phi, height, width, function_type, al
     values = y_min + sawtooth_func() * (y_max - y_min)
 
     image_matrix = np.tile(values.astype(np.uint8), (sidelength, 1))
+
+    plt.plot(image_matrix[0][0:500])
+    plt.show()
+
     if phi == 0 or phi == 180:
         img = crop_center(Image.fromarray(image_matrix), width, height)
     else:
@@ -117,4 +123,4 @@ class ImageDisplay(tk.Toplevel):
     class NoSecondMonitorError(Exception):
         pass
 
-App(0)
+App(monitor)
