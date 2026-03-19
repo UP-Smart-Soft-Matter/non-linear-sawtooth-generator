@@ -4,17 +4,17 @@ import tkinter as tk
 import screeninfo
 import matplotlib.pyplot as plt
 
-monitor = 1
+monitor = 0
 
-x_max = 100
+x_max = 17
 y_min = 0
 y_max = 255
 phi = 0
 height, width = (1080, 1920)
 
 # 0: exponential, 1: power, 2: log, else: linear
-function_type = 0
-alpha = -5
+function_type = 87643543543
+alpha = 3
 
 class App(tk.Tk):
     def __init__(self, monitor: int):
@@ -63,6 +63,9 @@ def generate_sawtooth(x_max, y_min, y_max, phi, height, width, function_type, al
         sawtooth_func = lambda: phase
 
     values = y_min + sawtooth_func() * (y_max - y_min)
+
+    plt.plot(values[0:50])
+    plt.show()
 
     image_matrix = np.tile(values.astype(np.uint8), (sidelength, 1))
 
